@@ -44,7 +44,7 @@ jobs:
           SHEET_ID: ${{secrets.SHEET_ID}}
         run: |
           conda activate sheet2rdf          
-          python ./src/getSheet.py
+          python ./src/sheet2xls.py
 
       - name: conversion-xls2rdf
         env:
