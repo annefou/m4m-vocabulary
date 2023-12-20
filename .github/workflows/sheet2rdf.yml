@@ -35,24 +35,20 @@ jobs:
           git pull        
           conda create -n sheet2rdf python=3.8 pandas openpyxl
           conda activate sheet2rdf
-          pip install gsheets
           curl -L https://github.com/sparna-git/xls2rdf/releases/download/2.1.1/xls2rdf-app-2.1.1-onejar.jar -o xls2rdf.jar
 
       - name: Fetch
         shell: bash -l {0}
         env:
-          CLIENT: ${{secrets.CLIENT}}
-          STORAGE: ${{secrets.STORAGE}}
           FILE_NAME: ${{secrets.FILE_NAME}}
           SHEET_ID: ${{secrets.SHEET_ID}}
         run: |
           conda activate sheet2rdf          
-          python ./src/sheet2xls.py
+          python ./src/getSheet.py
 
       - name: conversion-xls2rdf
         env:
           FILE_NAME: ${{secrets.FILE_NAME}}
-          RENDERING_PROPERTIES: ${{secrets.RENDERING_PROPERTIES}}
         run: |
           java -jar xls2rdf.jar convert -i $FILE_NAME.xlsx -o $FILE_NAME.ttl -l en
           mv xls2rdf.log ./logs/
