@@ -1,5 +1,4 @@
-18:07:47.172  895  DEBUG fr.sparna.rdf.xls2rdf.app.Convert - Will use output format : text/turtle
-18:07:47.175  898  DEBUG fr.sparna.rdf.xls2rdf.app.Convert - Will use ModelWriter : fr.sparna.rdf.xls2rdf.OutputStreamModelWriter
-18:07:47.925  1648 WARN  fr.sparna.rdf.xls2rdf.PrefixManager - Cannot fix URI by adding http://, problem is Illegal character in authority at index 7: http://LD Base vocabulary
-18:07:47.925  1648 DEBUG f.sparna.rdf.xls2rdf.RdfizableSheet - Cannot build a valid URI from 'LD Base vocabulary'.
-18:07:47.925  1648 DEBUG f.s.rdf.xls2rdf.Xls2RdfConverter - Sheet1 : Ignoring sheet.
+20:07:54.672  2486 DEBUG fr.sparna.rdf.xls2rdf.app.Convert - Will use output format : text/turtle
+20:07:54.674  2488 DEBUG fr.sparna.rdf.xls2rdf.app.Convert - Will use ModelWriter : fr.sparna.rdf.xls2rdf.OutputStreamModelWriter
+20:07:55.233  3047 DEBUG f.sparna.rdf.xls2rdf.RdfizableSheet - Sheet1 : B1 is not a valid URI ('skos:prefLabel@en(id="label")').
+20:07:55.233  3047 DEBUG f.s.rdf.xls2rdf.Xls2RdfConverter - Sheet1 : Ignoring sheet.
