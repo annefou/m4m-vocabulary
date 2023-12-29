@@ -1,16 +1,31 @@
-import pandas as pd
 import os
+import requests
+import sys
+import pandas as pd
 
+def getGoogleSeet(spreadsheet_id, outDir, outFile):
+  
+  url = f'https://docs.google.com/spreadsheets/d/{spreadsheet_id}/export?format=csv'
+  response = requests.get(url)
+  if response.status_code == 200:
+    filepath = os.path.join(outDir, outFile)
+    with open(filepath, 'wb') as f:
+      f.write(response.content)
+      print('CSV file saved to: {}'.format(filepath))    
+  else:
+    print(f'Error downloading Google Sheet: {response.status_code}')
+    sys.exit(1)
+
+
+##############################################
 
 file_name = os.environ['FILE_NAME']
 sheet_id = os.environ["SHEET_ID"]
-url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={file_name}"
 
-df = pd.read_csv(
-    url, header=None, encoding="utf-8"
-)
+outDir = './'
 
-df.to_csv(file_name + ".csv", encoding="utf-8", header=False, index=False)
+os.makedirs(outDir, exist_ok = True)
+filepath = getGoogleSeet(sheet_id, outDir, file_name + ".csv")
 
 txt_delimiter = ","
 
@@ -34,4 +49,4 @@ df = pd.read_csv(
 )
 df.to_excel(file_name + ".xlsx", index=False, header=False)
 
-
+sys.exit(0); ## success
